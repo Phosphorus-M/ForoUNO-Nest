@@ -1,0 +1,121 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  uId: Int!
+  username: String!
+  salt: String!
+  signature: String
+  email: String!
+  avatar: String
+  usergroup: Int!
+  regdate: DateTime!
+  linkedin: String
+  instagram: String
+  facebook: String
+  twitter: String
+  githubGitlab: String
+  birthday: String
+  description: String
+  location: String
+  career: String
+  hidedata: Boolean!
+  lastip: String
+  active: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Comment {
+  cId: Int!
+  tId: Int!
+  thread: Thread!
+  uId: Int!
+  user: User!
+  dateline: DateTime!
+  message: String
+  replyto: Int!
+  hide: Boolean!
+}
+
+type TagType {
+  tagtypeId: Int
+  tag_name: String
+}
+
+type Tag {
+  tagId: Int!
+  name: String
+  tagtypeId: Int!
+  tagtype: TagType
+  threads: [Thread!]!
+}
+
+"""Attachment"""
+type Attachment {
+  aId: Int!
+  tId: Int!
+  thread: Thread!
+  filename: String!
+  filetype: String!
+  filesize: Float!
+  thumbnail: String
+  downloads: Int!
+  attachname: String
+  dateupload: Float!
+}
+
+"""Return a list of threads"""
+type Thread {
+  tId: Int!
+  uId: Int!
+  user: User!
+  likes: Int!
+  subject: String
+  dateline: DateTime!
+  views: Int!
+  message: String
+  hide: Boolean!
+  comments: [Comment!]!
+  tags: [Tag!]!
+  attachments: [Attachment!]!
+}
+
+type Query {
+  """Get a specific thread by id"""
+  thread(
+    """Thread id"""
+    id: Int!
+  ): Thread!
+
+  """Get a list of threads"""
+  threads(
+    """A limit to paginate"""
+    limit: Int
+
+    """Number of page"""
+    page: Int
+
+    """
+    A argument to define advance searching, example: 
+    show:popular = show just the threads populars
+    """
+    query: String
+
+    """Argument to define the order of results by tId"""
+    order: ORDER_BY
+
+    """Field to define if the message of the thread is cuted or not"""
+    cut: Boolean
+  ): [Thread!]!
+}
+
+"""Order by"""
+enum ORDER_BY {
+  ASC
+  DESC
+}

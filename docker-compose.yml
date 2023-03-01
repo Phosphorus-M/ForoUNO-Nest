@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+    mariadb:
+        image: "mariadb:10.5"
+        container_name: foro-mariadb
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=foro
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+        ports:
+            - 3306:3306

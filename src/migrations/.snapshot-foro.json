@@ -1,0 +1,1102 @@
+{
+  "namespaces": [],
+  "tables": [
+    {
+      "columns": {
+        "tagtype_id": {
+          "name": "tagtype_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": true,
+          "mappedType": "integer"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "default": "null",
+          "mappedType": "string"
+        }
+      },
+      "name": "FUsTagTypes",
+      "indexes": [
+        {
+          "columnNames": [
+            "name"
+          ],
+          "composite": false,
+          "keyName": "name",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "tagtype_id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "tag_id": {
+          "name": "tag_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "'NULL'",
+          "mappedType": "string"
+        },
+        "tagtype_id": {
+          "name": "tagtype_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
+        }
+      },
+      "name": "FUdTags",
+      "indexes": [
+        {
+          "columnNames": [
+            "name"
+          ],
+          "composite": false,
+          "keyName": "name",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "tagtype_id"
+          ],
+          "composite": false,
+          "keyName": "fk_tag_tagtype",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "tag_id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "FUdTags_tagtype_id_foreign": {
+          "constraintName": "FUdTags_tagtype_id_foreign",
+          "columnNames": [
+            "tagtype_id"
+          ],
+          "localTableName": "FUdTags",
+          "referencedColumnNames": [
+            "tagtype_id"
+          ],
+          "referencedTableName": "FUsTagTypes",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "tag_id": {
+          "name": "tag_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "FUrThreads_Tags",
+      "indexes": [
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "tag_id",
+            "t_id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "u_id": {
+          "name": "u_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(32)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 32,
+          "mappedType": "string"
+        },
+        "password": {
+          "name": "password",
+          "type": "char(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 128
+        },
+        "salt": {
+          "name": "salt",
+          "type": "char(25)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 25
+        },
+        "signature": {
+          "name": "signature",
+          "type": "mediumtext",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 16777215,
+          "default": "null"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 128,
+          "mappedType": "string"
+        },
+        "avatar": {
+          "name": "avatar",
+          "type": "varchar(200)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 200,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "usergroup": {
+          "name": "usergroup",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0",
+          "mappedType": "integer"
+        },
+        "regdate": {
+          "name": "regdate",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "default": "current_timestamp()",
+          "mappedType": "datetime"
+        },
+        "linkedin": {
+          "name": "linkedin",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "instagram": {
+          "name": "instagram",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "facebook": {
+          "name": "facebook",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "twitter": {
+          "name": "twitter",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "github_gitlab": {
+          "name": "github_gitlab",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "birthday": {
+          "name": "birthday",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "description": {
+          "name": "description",
+          "type": "mediumtext",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 16777215,
+          "default": "null"
+        },
+        "location": {
+          "name": "location",
+          "type": "varchar(40)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 40,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "career": {
+          "name": "career",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "hidedata": {
+          "name": "hidedata",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        },
+        "lastip": {
+          "name": "lastip",
+          "type": "varbinary(16)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 16,
+          "default": "null"
+        },
+        "active": {
+          "name": "active",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "1"
+        }
+      },
+      "name": "FUdUsers",
+      "indexes": [
+        {
+          "columnNames": [
+            "username"
+          ],
+          "composite": false,
+          "keyName": "username",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "email"
+          ],
+          "composite": false,
+          "keyName": "email",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "u_id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "u_id": {
+          "name": "u_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "likes": {
+          "name": "likes",
+          "type": "json",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0",
+          "mappedType": "json"
+        },
+        "subject": {
+          "name": "subject",
+          "type": "varchar(100)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 100,
+          "default": "'NULL'",
+          "mappedType": "string"
+        },
+        "dateline": {
+          "name": "dateline",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "default": "current_timestamp()",
+          "mappedType": "datetime"
+        },
+        "views": {
+          "name": "views",
+          "type": "json",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0",
+          "mappedType": "json"
+        },
+        "message": {
+          "name": "message",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 65535,
+          "default": "'NULL'",
+          "mappedType": "text"
+        },
+        "hide": {
+          "name": "hide",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "1"
+        }
+      },
+      "name": "FUdThreads",
+      "indexes": [
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "t_id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "tag_id": {
+          "name": "tag_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "FUrThreads_Tags",
+      "indexes": [
+        {
+          "columnNames": [
+            "t_id"
+          ],
+          "composite": false,
+          "keyName": "FUrThreads_Tags_t_id_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "tag_id"
+          ],
+          "composite": false,
+          "keyName": "FUrThreads_Tags_tag_id_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "t_id",
+            "tag_id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "FUrThreads_Tags_t_id_foreign": {
+          "constraintName": "FUrThreads_Tags_t_id_foreign",
+          "columnNames": [
+            "t_id"
+          ],
+          "localTableName": "FUrThreads_Tags",
+          "referencedColumnNames": [
+            "t_id"
+          ],
+          "referencedTableName": "FUdThreads",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "FUrThreads_Tags_tag_id_foreign": {
+          "constraintName": "FUrThreads_Tags_tag_id_foreign",
+          "columnNames": [
+            "tag_id"
+          ],
+          "localTableName": "FUrThreads_Tags",
+          "referencedColumnNames": [
+            "tag_id"
+          ],
+          "referencedTableName": "FUdTags",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "a_id": {
+          "name": "a_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "filename": {
+          "name": "filename",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 128,
+          "mappedType": "string"
+        },
+        "filetype": {
+          "name": "filetype",
+          "type": "varchar(120)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 120,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "filesize": {
+          "name": "filesize",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "default": "null",
+          "mappedType": "integer"
+        },
+        "thumbnail": {
+          "name": "thumbnail",
+          "type": "varchar(120)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 120,
+          "default": "null",
+          "mappedType": "string"
+        },
+        "downloads": {
+          "name": "downloads",
+          "type": "json",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0",
+          "mappedType": "json"
+        },
+        "attachname": {
+          "name": "attachname",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        }
+      },
+      "name": "FUdAttachments",
+      "indexes": [
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "a_id",
+            "t_id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "report_id": {
+          "name": "report_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "u_id": {
+          "name": "u_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "default": "NULL",
+          "mappedType": "integer"
+        },
+        "c_id": {
+          "name": "c_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "default": "null",
+          "mappedType": "integer"
+        },
+        "date": {
+          "name": "date",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "default": "current_timestamp()",
+          "mappedType": "datetime"
+        },
+        "cause": {
+          "name": "cause",
+          "type": "varchar(32)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 32,
+          "mappedType": "string"
+        },
+        "message": {
+          "name": "message",
+          "type": "varchar(128)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 128,
+          "default": "null",
+          "mappedType": "string"
+        }
+      },
+      "name": "FUrReports",
+      "indexes": [
+        {
+          "columnNames": [
+            "t_id"
+          ],
+          "composite": false,
+          "keyName": "fk_report_thread",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "u_id"
+          ],
+          "composite": false,
+          "keyName": "fk_report_user",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "report_id",
+            "t_id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "FUrReports_t_id_foreign": {
+          "constraintName": "FUrReports_t_id_foreign",
+          "columnNames": [
+            "t_id"
+          ],
+          "localTableName": "FUrReports",
+          "referencedColumnNames": [
+            "t_id"
+          ],
+          "referencedTableName": "FUdThreads",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "FUrReports_u_id_foreign": {
+          "constraintName": "FUrReports_u_id_foreign",
+          "columnNames": [
+            "u_id"
+          ],
+          "localTableName": "FUrReports",
+          "referencedColumnNames": [
+            "u_id"
+          ],
+          "referencedTableName": "FUdUsers",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "c_id": {
+          "name": "c_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "u_id": {
+          "name": "u_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "dateline": {
+          "name": "dateline",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "default": "current_timestamp()",
+          "mappedType": "datetime"
+        },
+        "message": {
+          "name": "message",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 65535,
+          "mappedType": "text"
+        },
+        "replyto": {
+          "name": "replyto",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "default": "null",
+          "mappedType": "integer"
+        },
+        "hide": {
+          "name": "hide",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "1"
+        }
+      },
+      "name": "FUdComments",
+      "indexes": [
+        {
+          "columnNames": [
+            "t_id"
+          ],
+          "composite": false,
+          "keyName": "fk_comment_thread",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "u_id"
+          ],
+          "composite": false,
+          "keyName": "fk_comment_user",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "c_id",
+            "t_id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "FUdComments_t_id_foreign": {
+          "constraintName": "FUdComments_t_id_foreign",
+          "columnNames": [
+            "t_id"
+          ],
+          "localTableName": "FUdComments",
+          "referencedColumnNames": [
+            "t_id"
+          ],
+          "referencedTableName": "FUdThreads",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "FUdComments_u_id_foreign": {
+          "constraintName": "FUdComments_u_id_foreign",
+          "columnNames": [
+            "u_id"
+          ],
+          "localTableName": "FUdComments",
+          "referencedColumnNames": [
+            "u_id"
+          ],
+          "referencedTableName": "FUdUsers",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "userg_id": {
+          "name": "userg_id",
+          "type": "tinyint(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "boolean"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(32)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 32,
+          "mappedType": "string"
+        },
+        "canBan": {
+          "name": "canBan",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        },
+        "canViewDashboard": {
+          "name": "canViewDashboard",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        },
+        "canInsert": {
+          "name": "canInsert",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        },
+        "canDelete": {
+          "name": "canDelete",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        },
+        "canModTags": {
+          "name": "canModTags",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        },
+        "canCreate": {
+          "name": "canCreate",
+          "type": "bit(1)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0"
+        }
+      },
+      "name": "FUsUserGroups",
+      "indexes": [
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "userg_id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "view_id": {
+          "name": "view_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "t_id": {
+          "name": "t_id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "date": {
+          "name": "date",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "default": "current_timestamp()",
+          "mappedType": "datetime"
+        }
+      },
+      "name": "FUrViews",
+      "indexes": [
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "view_id",
+            "t_id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    }
+  ]
+}
